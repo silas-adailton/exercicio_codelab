@@ -39,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
-        TabLayout tabs = (TabLayout)findViewById(R.id.tabs);
-        ViewPager viewPager = (ViewPager)findViewById(R.id.view_pager);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
         setSupportActionBar(toolbar);
         setupViewPager(viewPager);
 
@@ -55,9 +55,9 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
 
-        adapter.addFragment(new ListContentFragment(),"List");
-        adapter.addFragment(new TitleContentFragment(),"Title");
-        adapter.addFragment(new CardContentFragment(),"Card");
+        adapter.addFragment(new ListContentFragment(), "List");
+        adapter.addFragment(new TitleContentFragment(), "Title");
+        adapter.addFragment(new CardContentFragment(), "Card");
         viewPager.setAdapter(adapter);
 
     }
@@ -81,9 +81,11 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     static class Adapter extends FragmentPagerAdapter {
-        private final List<Fragment>mFragmentList = new ArrayList<>();
+        private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
+
         public Adapter(FragmentManager manager) {
             super(manager);
         }
@@ -98,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             return mFragmentList.size();
         }
 
-        public void addFragment(Fragment fragment, String title){
+        public void addFragment(Fragment fragment, String title) {
             mFragmentList.add(fragment);
             mFragmentTitleList.add(title);
         }
