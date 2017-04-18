@@ -27,5 +27,5 @@
         android:gravity="center"
         android:textColor="@color/white"
         android:textSize="@dimen/article_titles"
-        android:text="@string/item_title" />
+        tools:text="@string/item_title" />
 </RelativeLayout>
