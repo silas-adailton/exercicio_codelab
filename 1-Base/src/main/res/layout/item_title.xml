@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/tile_height"
         android:scaleType="centerCrop"
-        tools:src="@drawable/a" />
+        android:src="@drawable/a"/>
 
     <ImageView
         android:layout_width="match_parent"
@@ -27,5 +27,5 @@
         android:gravity="center"
         android:textColor="@color/white"
         android:textSize="@dimen/article_titles"
-        tools:text="@string/item_title" />
+        android:text="@string/item_title" />
 </RelativeLayout>

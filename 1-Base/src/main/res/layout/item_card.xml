@@ -28,7 +28,7 @@
             android:layout_marginLeft="@dimen/md_keylines"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textColor="@color/white"
-            tools:text="@string/item_title" />
+            android:text="@string/item_title" />
 
         <TextView
             android:id="@+id/card_text"
@@ -43,7 +43,7 @@
             android:maxLines="1"
             android:textColor="@color/dark_grey"
             android:textSize="@dimen/article_subheading"
-            tools:text="@string/item_desc" />
+            android:text="@string/item_desc" />
 
         <Button
             android:id="@+id/action_button"
