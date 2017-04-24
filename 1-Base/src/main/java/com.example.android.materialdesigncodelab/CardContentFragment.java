@@ -1,17 +1,20 @@
 package com.example.android.materialdesigncodelab;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,26 +36,57 @@ public class CardContentFragment extends Fragment {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView picture;
         public TextView name;
-        public TextView description;
+        private ImageView picture;
+        private TextView description;
 
-        public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
+        private ViewHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.item_card, parent, false));
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, DatailActivity.class);
+                    intent.putExtra(DatailActivity.EXTRA_POSITION, getAdapterPosition());
+                    context.startActivity(intent);
+                }
+            });
 
             picture = (ImageView) itemView.findViewById(R.id.card_image);
             name = (TextView) itemView.findViewById(R.id.card_title);
             description = (TextView) itemView.findViewById(R.id.card_text);
+
+            ImageButton sharedButton = (ImageButton) itemView.findViewById(R.id.share_button);
+            ImageButton favoriteButton = (ImageButton) itemView.findViewById(R.id.favorite_button);
+
+            sharedButton.setOnClickListener(new SharedClick());
+            favoriteButton.setOnClickListener(new FavoriteClick());
+        }
+    }
+
+    private static class SharedClick implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            Snackbar.make(v, "Button Share ", Snackbar.LENGTH_LONG).show();
+        }
+    }
+
+    private static class FavoriteClick implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            Snackbar.make(v, "Button Favorite ", Snackbar.LENGTH_LONG).show();
         }
     }
 
     public static class ContentAdapter extends RecyclerView.Adapter<ViewHolder> {
-        public static final int LENGTH = 18;
+        private static final int LENGTH = 18;
         private final String[] mPlaces;
         private final String[] mPlaceDesc;
         private final Drawable[] mPlacePictures;
 
-        public ContentAdapter(Context context) {
+        private ContentAdapter(Context context) {
             Resources resources = context.getResources();
 
             mPlaces = resources.getStringArray(R.array.places);
